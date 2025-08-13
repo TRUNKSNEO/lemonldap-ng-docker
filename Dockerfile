@@ -17,8 +17,8 @@ RUN echo "# Install LemonLDAP::NG source repo" && \
     wget -O - https://lemonldap-ng.org/_media/rpm-gpg-key-ow2 | apt-key add - && \
     echo "deb https://lemonldap-ng.org/deb 2.0 main" >/etc/apt/sources.list.d/lemonldap-ng.list
 
-RUN echo "# Enable Debian backports" && \
-    echo "deb http://deb.debian.org/debian bullseye-backports main" > /etc/apt/sources.list.d/backports.list
+#RUN echo "# Enable Debian backports" && \
+#    echo "deb http://deb.debian.org/debian bullseye-backports main" > /etc/apt/sources.list.d/backports.list
 
 RUN apt-get -y update && \
     echo "# Install LemonLDAP::NG packages" && \
