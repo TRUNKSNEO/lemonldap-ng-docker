@@ -12,30 +12,30 @@ ENV SSODOMAIN=example.com \
 COPY lemonldap.dpkg.cfg /etc/dpkg/dpkg.cfg.d/lemonldap
 
 RUN echo "# Install LemonLDAP::NG source repo" && \
-    apt -y update && \
-    apt -y install wget apt-transport-https gnupg dumb-init && \
+    apt-get -y update && \
+    apt-get -y install wget apt-transport-https gnupg dumb-init && \
     wget -O - https://lemonldap-ng.org/_media/rpm-gpg-key-ow2 | apt-key add - && \
     echo "deb https://lemonldap-ng.org/deb 2.0 main" >/etc/apt/sources.list.d/lemonldap-ng.list
 
 RUN echo "# Enable Debian backports" && \
     echo "deb http://deb.debian.org/debian bullseye-backports main" > /etc/apt/sources.list.d/backports.list
 
-RUN apt -y update && \
+RUN apt-get -y update && \
     echo "# Install LemonLDAP::NG packages" && \
-    apt -y install nginx lemonldap-ng cron anacron liblasso-perl libio-string-perl && \
+    apt-get -y install nginx lemonldap-ng cron anacron liblasso-perl libio-string-perl && \
     echo "# Install LemonLDAP::NG TOTP requirements" && \
-    apt -y install libconvert-base32-perl libdigest-hmac-perl && \
+    apt-get -y install libconvert-base32-perl libdigest-hmac-perl && \
     echo "# Install LemonLDAP::NG WebAuthn requirements" && \
-    apt -y install libauthen-webauthn-perl && \
+    apt-get -y install libauthen-webauthn-perl && \
     echo "# Install some DB drivers" && \
-    apt -y install libdbd-mysql-perl libdbd-pg-perl && \
+    apt-get -y install libdbd-mysql-perl libdbd-pg-perl && \
     echo "# Install vim required for lmConfigEditor" && \
-    apt -y install vim && \
+    apt-get -y install vim && \
     echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 
 RUN echo "# Clean up image" && \
-    apt clean && \
-    apt autoremove --yes && \
+    apt-get clean && \
+    apt-get autoremove --yes && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 COPY docker-entrypoint.sh /
