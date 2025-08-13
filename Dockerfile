@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM debian:bookworm-slim
 LABEL   org.opencontainers.image.authors="Clément OUDOT" \
         name="lemonldap-ng-nginx" \
         version="v2.0"
