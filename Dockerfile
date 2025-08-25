@@ -13,9 +13,9 @@ COPY lemonldap.dpkg.cfg /etc/dpkg/dpkg.cfg.d/lemonldap
 
 RUN echo "# Install LemonLDAP::NG source repo" && \
     apt-get -y update && \
-    apt-get -y install wget apt-transport-https gnupg dumb-init && \
-    wget -O - https://lemonldap-ng.org/_media/rpm-gpg-key-ow2 | apt-key add - && \
-    echo "deb https://lemonldap-ng.org/deb 2.0 main" >/etc/apt/sources.list.d/lemonldap-ng.list
+    apt-get -y install wget apt-transport-https gnupg dumb-init curl && \
+    curl https://lemonldap-ng.org/_media/rpm-gpg-key-ow2 | gpg --dearmor > /usr/share/keyrings/lemonldap-ng-archive-keyring.gpg && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lemonldap-ng-archive-keyring.gpg] https://lemonldap-ng.org/deb 2.0 main" >/etc/apt/sources.list.d/lemonldap-ng.list
 
 #RUN echo "# Enable Debian backports" && \
 #    echo "deb http://deb.debian.org/debian bullseye-backports main" > /etc/apt/sources.list.d/backports.list
