@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM debian:trixie-slim
 LABEL   org.opencontainers.image.authors="Clément OUDOT" \
         name="lemonldap-ng-nginx" \
         version="v2.0"
@@ -13,12 +13,9 @@ COPY lemonldap.dpkg.cfg /etc/dpkg/dpkg.cfg.d/lemonldap
 
 RUN echo "# Install LemonLDAP::NG source repo" && \
     apt -y update && \
-    apt -y install wget apt-transport-https gnupg dumb-init && \
-    wget -O - https://lemonldap-ng.org/_media/rpm-gpg-key-ow2 | apt-key add - && \
-    echo "deb https://lemonldap-ng.org/deb 2.0 main" >/etc/apt/sources.list.d/lemonldap-ng.list
-
-RUN echo "# Enable Debian backports" && \
-    echo "deb http://deb.debian.org/debian bullseye-backports main" > /etc/apt/sources.list.d/backports.list
+    apt -y install wget apt-transport-https gnupg dumb-init curl && \
+    curl https://lemonldap-ng.org/lemonldap-debian-packages-pub.gpg | gpg --dearmor > /usr/share/keyrings/lemonldap-debian-packages-pub.gpg && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lemonldap-debian-packages-pub.gpg] https://lemonldap-ng.org/deb 2.0 main" >/etc/apt/sources.list.d/lemonldap-ng.list
 
 RUN apt -y update && \
     echo "# Install LemonLDAP::NG packages" && \
