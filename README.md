@@ -1,6 +1,19 @@
 # LemonLDAP::NG in Docker
 
-![LL::NG+Docker](http://lemonldap-ng.org/_media/documentation/lemonldap-ng-docker.png)
+![LL::NG+Docker](./media/llng_docker.png)
+
+## Authentication
+![Authentication](./media/auth.png)
+
+## Portal
+![Portal](./media/portal.png)
+
+## Manager
+![Manager](./media/manager.png)
+
+## Contributing
+
+If you wish to contribute to Lemonldap-ng you can find the repository here: https://gitlab.ow2.org/lemonldap-ng/lemonldap-ng/
 
 ## Build the image
 
@@ -16,7 +29,7 @@ Use the docker build command:
 
 ## Run the image
 
-The image will run LemonLDAP::NG in demo mode (see http://lemonldap-ng.org/documentation/latest/authdemo).
+The image will run LemonLDAP::NG by default in demo mode (see http://lemonldap-ng.org/documentation/latest/authdemo).
 
 Add auth.example.com/manager.example.com/test1.example.com/test2.example.com to /etc/hosts on the host
 ```
