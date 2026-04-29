@@ -82,6 +82,25 @@ Example:
     sudo docker run -d --name lemonldap-ng -e SSODOMAIN=example.com -e LOGLEVEL=debug -p 80:80 lemonldapng/lemonldap-ng:latest
 ```
 
+## Custom configuration
+
+If you have some custom parameters, you are encouraged to set them in a YAML file that should be mounted to `/tmp/llng_config_custom.yaml`.
+
+For example:
+```yaml
+---
+cookieName: mycustomcookie
+```
+
+To use it in the container:
+```
+    sudo docker run -d --name lemonldap-ng -e SSODOMAIN=example.com -e LOGLEVEL=debug -v mycustomparams.yaml:/tmp/llng_config_custom.yaml -p 80:80 lemonldapng/lemonldap-ng:latest
+```
+
+See the LemonLDAP::NG full parameter list here: https://lemonldap-ng.org/documentation/latest/parameterlist.html
+
+## Other examples
+
 Command to deploy fast-cgi-server and nginx connecting via port 9000:
 
 ```
