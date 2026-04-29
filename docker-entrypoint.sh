@@ -44,6 +44,12 @@ fi
 
 sed -i "s/example\.com/${SSODOMAIN}/" /etc/lemonldap-ng/* /var/lib/lemonldap-ng/conf/lmConf-1.json /etc/nginx/sites-enabled/*
 
+# Merge custom configuration parameters
+if [ -r /tmp/llng_config_custom.yaml ]; then
+     /usr/share/lemonldap-ng/bin/lemonldap-ng-cli --user=root --group=root -yes 1 -force 1 merge /tmp/llng_config_custom.yaml
+     /usr/share/lemonldap-ng/bin/lemonldap-ng-cli update-cache
+fi
+
 # Logging options
 sed -i -e "s/^logLevel.*/logLevel=${LOGLEVEL}/" /etc/lemonldap-ng/lemonldap-ng.ini
 if ! grep -q '^logger' /etc/lemonldap-ng/lemonldap-ng.ini ; then

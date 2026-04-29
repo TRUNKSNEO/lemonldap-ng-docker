@@ -24,6 +24,8 @@ RUN apt -y update && \
     apt -y install libconvert-base32-perl libdigest-hmac-perl && \
     echo "# Install LemonLDAP::NG WebAuthn requirements" && \
     apt -y install libauthen-webauthn-perl && \
+    echo "# Install YAML library" && \
+    apt -y install libyaml-perl && \
     echo "# Install some DB drivers" && \
     apt -y install libdbd-mysql-perl libdbd-pg-perl && \
     echo "# Install vim required for lmConfigEditor" && \
